@@ -11,7 +11,27 @@ describe('Clock', () => {
 		expect(Clock).toExist();
 	});
 	
-	/* describe('formatSeconds', () => {
+	describe('formatSeconds', () => {
+		it('should format seconds', () => {
+			var clock = TestUtils.renderIntoDocument(<Clock/>);
+			
+			var seconds = 615;
+			
+			var expected = '10:15';
+			var actual = clock.formatSeconds(seconds);
+			
+			expect(actual).toBe(expected);
+		});
 		
-	}); */
+		it('should format seconds with leading zeros', () => {
+			var clock = TestUtils.renderIntoDocument(<Clock/>);
+			
+			var seconds = 62;
+			
+			var expected = '01:02';
+			var actual = clock.formatSeconds(seconds);
+			
+			expect(actual).toBe(expected);
+		});
+	});
 });
