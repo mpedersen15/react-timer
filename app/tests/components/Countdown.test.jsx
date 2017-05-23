@@ -12,7 +12,7 @@ describe('Countdown', () => {
 	});
 
 	describe('handleSetCountdown', () => {
-		it('should start countdown', () => {
+		it('should start countdown', (done) => {
 			var countdown = TestUtils.renderIntoDocument(<Countdown/>);
 
 			countdown.handleSetCountdown(10);
@@ -22,11 +22,12 @@ describe('Countdown', () => {
 
 			setTimeout(() => {
 				expect(countdown.state.count).toBe(9);
+				done();
 			},1001);
 
 		});
 
-		it('should not let count less than 0', () => {
+		it('should not let count less than 0', (done) => {
 			var countdown = TestUtils.renderIntoDocument(<Countdown/>);
 
 			countdown.handleSetCountdown(1);
@@ -36,7 +37,21 @@ describe('Countdown', () => {
 
 			setTimeout(() => {
 				expect(countdown.state.count).toBe(0);
+				done();
 			},3001);
+
+		});
+
+		it('should pause count when status paused', () => {
+			var countdown = TestUtils.renderIntoDocument(<Countdown />);
+			countdown.handleSetCountdown(3);
+			countdown.handleStatusChange('paused');
+
+			setTimeout(() => {
+				expect(countdown.state.count).toBe(3);
+				expect(countdown.state.countdownStatus).toBe('paused');
+				done();
+			}, 1001);
 
 		});
 

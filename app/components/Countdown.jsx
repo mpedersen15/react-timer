@@ -17,7 +17,6 @@ var Countdown = React.createClass({
 		});
 	},
 	handleStatusChange: function(status){
-		console.log('status changed to ', status);
 		this.setState({
 			countdownStatus: status
 		})
@@ -47,7 +46,6 @@ var Countdown = React.createClass({
 						count: 0
 					});
 				case 'paused':
-					console.log('state updated status to paused');
 					clearInterval(this.timer);
 					this.timer = undefined;
 					break;
