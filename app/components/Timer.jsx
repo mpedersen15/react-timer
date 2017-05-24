@@ -16,9 +16,8 @@ var Timer = React.createClass({
 	},
 	startTimer: function(){
 		this.timer = setInterval (() => {
-			var newCount = this.state.count + 1;
 			this.setState({
-				count: newCount
+				count: this.state.count + 1
 			});
 		},1000);
 	},
@@ -31,7 +30,6 @@ var Timer = React.createClass({
 				case 'stopped':
 					this.setState({
 						count: 0,
-						timerStatus: 'paused'
 					});
 				case 'paused':
 					clearInterval(this.timer);
